@@ -63,15 +63,17 @@ function render() {
     console.log('rendering!')
     console.log({fungusHP})
     console.log({ heroAP })
+    if (heroAP < 0) {
+        $('.freaky-fungus').removeClass('walk');
+        $('.freaky-fungus').addClass('jump');
+        $('.attack-btn').attr('disabled', 'disabled');
+        heroAP = 0;
+    }
     if (fungusHP < 0) {
         $('.freaky-fungus').removeClass('walk');
         $('.freaky-fungus').addClass('dead');
         fungusHP = 0;
-    } else if (heroAP < 0) {
-        $('.freaky-fungus').removeClass('walk');
-        $('.freaky-fungus').addClass('jump');
-        heroAP = 0;
-    }
+    } 
     $('.hp-text').empty();
     $('.hp-text').append(`${fungusHP} AP`);
     $('.ap-text').empty();
